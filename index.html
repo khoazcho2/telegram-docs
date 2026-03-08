@@ -2,54 +2,39 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Bot Commands</title>
+<title>Danh sách lệnh bot</title>
 
 <style>
 
 body{
 font-family: Arial;
-background:#f2f4f8;
-padding:20px;
+background:#e6ebf5;
+padding:30px;
 }
 
-.container{
-max-width:650px;
-margin:auto;
-}
-
-.card{
+.box{
 background:white;
 padding:20px;
 border-radius:12px;
-box-shadow:0 3px 8px rgba(0,0,0,0.1);
-margin-bottom:20px;
+width:420px;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
 }
 
-h1{
-text-align:center;
+h2{
+margin-top:0;
 }
 
-.command{
-background:#eef2ff;
-padding:8px 12px;
-border-radius:8px;
-display:inline-block;
-margin:6px 0;
+.cmd{
+color:#2a7de1;
 cursor:pointer;
-font-weight:bold;
-color:#3a4fff;
-}
-
-.command:hover{
-background:#dce4ff;
 }
 
 </style>
 
 <script>
-function copy(cmd){
-navigator.clipboard.writeText(cmd);
-alert("📋 Đã copy: " + cmd);
+function copy(text){
+navigator.clipboard.writeText(text);
+alert("Đã copy: "+text);
 }
 </script>
 
@@ -57,43 +42,52 @@ alert("📋 Đã copy: " + cmd);
 
 <body>
 
-<div class="container">
+<div class="box">
 
-<h1>📜 Danh Sách Lệnh Bot</h1>
+<b>📜 Các lệnh có sẵn:</b>
 
-<div class="card">
+<br><br>
 
-<h2>👑 Admin (Chỉ admin)</h2>
+<b>👮 Admin (Chỉ chủ group hoặc admin):</b><br>
 
-<div class="command" onclick="copy('/ban')">🔨 /ban</div> - Ban user<br>
-<div class="command" onclick="copy('/unban')">🔓 /unban</div> - Unban user<br>
-<div class="command" onclick="copy('/mute')">🔇 /mute</div> - Mute user<br>
-<div class="command" onclick="copy('/locklink')">🔗 /locklink</div> - Chặn link<br>
-<div class="command" onclick="copy('/unlocklink')">🔓 /unlocklink</div> - Mở chặn link<br>
-<div class="command" onclick="copy('/lock18')">🔞 /lock18</div> - Chặn ảnh 18+<br>
-<div class="command" onclick="copy('/unlock18')">🟢 /unlock18</div> - Mở ảnh 18+<br>
-<div class="command" onclick="copy('/schedule')">⏰ /schedule</div> - Tin nhắn định kỳ<br>
-<div class="command" onclick="copy('/unschedule')">❌ /unschedule</div> - Tắt tin định kỳ
+<span class="cmd" onclick="copy('/ban')">🔨 /ban</span> - Ban user (reply)<br>
+<span class="cmd" onclick="copy('/unban')">🔓 /unban</span> - Unban user (reply)<br>
+<span class="cmd" onclick="copy('/mute')">🔇 /mute</span> - Mute user<br>
 
-</div>
+VD:  
+🔇 /mute 5 (5 phút)  
+🔇 /mute 30s (30 giây)
 
-<div class="card">
+<br><br>
 
-<h2>🛡️ Bot Owner</h2>
+<span class="cmd" onclick="copy('/locklink')">🔗 /locklink</span> - Bật chặn link<br>
+<span class="cmd" onclick="copy('/unlocklink')">🔓 /unlocklink</span> - Tắt chặn link<br>
 
-<div class="command" onclick="copy('/banglobal')">🌍 /banglobal</div> - Ban toàn bộ<br>
-<div class="command" onclick="copy('/unbanglobal')">🌍 /unbanglobal</div> - Bỏ ban toàn bộ
+<span class="cmd" onclick="copy('/lock18')">🔞 /lock18</span> - Bật chặn 18+<br>
+<span class="cmd" onclick="copy('/unlock18')">🔓 /unlock18</span> - Tắt chặn 18+<br>
 
-</div>
+<span class="cmd" onclick="copy('/lock18image')">🖼️ /lock18image</span> - Bật chặn ảnh 18+<br>
+<span class="cmd" onclick="copy('/unlock18image')">🖼️ /unlock18image</span> - Tắt chặn ảnh 18+<br>
 
-<div class="card">
+<span class="cmd" onclick="copy('/lock18link')">🚫🔗 /lock18link</span> - Bật chặn link 18+<br>
+<span class="cmd" onclick="copy('/unlock18link')">🔓🔗 /unlock18link</span> - Tắt chặn link 18+<br>
 
-<h2>⚙️ Khác</h2>
+<span class="cmd" onclick="copy('/schedule')">⏰ /schedule</span> - Tin nhắn định kỳ<br>
+<span class="cmd" onclick="copy('/unschedule')">⏹️ /unschedule</span> - Tắt tin nhắn định kỳ
 
-<div class="command" onclick="copy('/start')">🚀 /start</div> - Kiểm tra bot<br>
-<div class="command" onclick="copy('/help')">📚 /help</div> - Xem danh sách lệnh
+<br><br>
 
-</div>
+<b>👑 Bot Owner (Chỉ người tạo bot):</b><br>
+
+<span class="cmd" onclick="copy('/banglobal')">🌍 /banglobal</span> - Ban toàn bộ group<br>
+<span class="cmd" onclick="copy('/unbanglobal')">🌏 /unbanglobal</span> - Unban toàn bộ
+
+<br><br>
+
+<b>⚙️ Khác:</b><br>
+
+<span class="cmd" onclick="copy('/start')">🚀 /start</span> - Kiểm tra bot<br>
+<span class="cmd" onclick="copy('/help')">📖 /help</span> - Xem danh sách lệnh
 
 </div>
 
