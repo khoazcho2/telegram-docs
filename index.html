@@ -2,79 +2,98 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Bot Docs</title>
+<title>Bot Commands</title>
+
 <style>
+
 body{
 font-family: Arial;
-background:#f5f6fa;
+background:#f2f4f8;
 padding:20px;
 }
 
-h1{
-font-size:32px;
+.container{
+max-width:650px;
+margin:auto;
 }
 
-.box{
+.card{
 background:white;
-padding:15px;
-border-radius:10px;
-margin-top:15px;
-box-shadow:0 2px 5px rgba(0,0,0,0.1);
+padding:20px;
+border-radius:12px;
+box-shadow:0 3px 8px rgba(0,0,0,0.1);
+margin-bottom:20px;
 }
 
-.cmd{
-background:#eef1f5;
-padding:8px;
-border-radius:6px;
-display:inline-block;
-margin:5px;
-font-family:monospace;
+h1{
+text-align:center;
 }
 
-.tip{
-background:#fff3cd;
-padding:10px;
+.command{
+background:#eef2ff;
+padding:8px 12px;
 border-radius:8px;
-margin-top:10px;
+display:inline-block;
+margin:6px 0;
+cursor:pointer;
+font-weight:bold;
+color:#3a4fff;
+}
+
+.command:hover{
+background:#dce4ff;
 }
 
 </style>
+
+<script>
+function copy(cmd){
+navigator.clipboard.writeText(cmd);
+alert("📋 Đã copy: " + cmd);
+}
+</script>
+
 </head>
 
 <body>
 
-<h1>Hướng Dẫn Chi Tiết</h1>
+<div class="container">
 
-<div class="tip">
-💡 Mẹo: Bấm vào lệnh để copy
-</div>
+<h1>📜 Danh Sách Lệnh Bot</h1>
 
-<div class="box">
-<h2>👑 Quản trị viên</h2>
+<div class="card">
 
-<p><span class="cmd">/dsadmin</span> - Danh sách admin</p>
-<p><span class="cmd">/cam [lý do]</span> - Cấm thành viên</p>
-<p><span class="cmd">/tcam [thời gian]</span> - Cấm tạm</p>
-<p><span class="cmd">/bocam</span> - Bỏ cấm</p>
+<h2>👑 Admin (Chỉ admin)</h2>
 
-</div>
-
-<div class="box">
-<h2>⚠️ Hệ thống cảnh báo</h2>
-
-<p><span class="cmd">/canhbao [số]</span> - Cảnh báo</p>
-<p><span class="cmd">/gocanhbao</span> - Xóa cảnh báo</p>
-<p><span class="cmd">/xemcanhbao</span> - Xem cảnh báo</p>
+<div class="command" onclick="copy('/ban')">🔨 /ban</div> - Ban user<br>
+<div class="command" onclick="copy('/unban')">🔓 /unban</div> - Unban user<br>
+<div class="command" onclick="copy('/mute')">🔇 /mute</div> - Mute user<br>
+<div class="command" onclick="copy('/locklink')">🔗 /locklink</div> - Chặn link<br>
+<div class="command" onclick="copy('/unlocklink')">🔓 /unlocklink</div> - Mở chặn link<br>
+<div class="command" onclick="copy('/lock18')">🔞 /lock18</div> - Chặn ảnh 18+<br>
+<div class="command" onclick="copy('/unlock18')">🟢 /unlock18</div> - Mở ảnh 18+<br>
+<div class="command" onclick="copy('/schedule')">⏰ /schedule</div> - Tin nhắn định kỳ<br>
+<div class="command" onclick="copy('/unschedule')">❌ /unschedule</div> - Tắt tin định kỳ
 
 </div>
 
-<div class="box">
-<h2>🔒 Quản lý tin nhắn</h2>
+<div class="card">
 
-<p><span class="cmd">/xoanhieu [n]</span> - Xóa n tin nhắn</p>
-<p><span class="cmd">/xoa</span> - Xóa tin reply</p>
-<p><span class="cmd">/ghim</span> - Ghim tin</p>
-<p><span class="cmd">/boghim</span> - Bỏ ghim</p>
+<h2>🛡️ Bot Owner</h2>
+
+<div class="command" onclick="copy('/banglobal')">🌍 /banglobal</div> - Ban toàn bộ<br>
+<div class="command" onclick="copy('/unbanglobal')">🌍 /unbanglobal</div> - Bỏ ban toàn bộ
+
+</div>
+
+<div class="card">
+
+<h2>⚙️ Khác</h2>
+
+<div class="command" onclick="copy('/start')">🚀 /start</div> - Kiểm tra bot<br>
+<div class="command" onclick="copy('/help')">📚 /help</div> - Xem danh sách lệnh
+
+</div>
 
 </div>
 
