@@ -1,94 +1,180 @@
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Danh sách lệnh bot</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot Commands List</title>
+    <style>
+        :root {
+            --bg-dark: #1c1c1e;
+            --header-bg: #121212;
+            --modal-bg: #e9edf1;
+            --card-bg: #ffffff;
+            --primary-blue: #2a7de1;
+        }
 
-<style>
+        body {
+            background-color: var(--bg-dark);
+            margin: 0;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+        }
 
-body{
-font-family: Arial;
-background:#e6ebf5;
-padding:30px;
-}
+        .window {
+            width: 100%;
+            max-width: 450px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
 
-.box{
-background:white;
-padding:20px;
-border-radius:12px;
-width:420px;
-box-shadow:0 3px 10px rgba(0,0,0,0.1);
-}
+        .header {
+            background-color: var(--header-bg);
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
 
-h2{
-margin-top:0;
-}
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-grow: 1;
+        }
 
-.cmd{
-color:#2a7de1;
-cursor:pointer;
-}
+        .avatar { width: 30px; height: 30px; border-radius: 50%; background: #444; }
+        .header-title { font-size: 14px; font-weight: 500; }
 
-</style>
+        .modal-body {
+            background-color: var(--modal-bg);
+            padding: 25px 15px;
+            border-bottom-left-radius: 35px;
+            border-bottom-right-radius: 35px;
+        }
 
-<script>
-function copy(text){
-navigator.clipboard.writeText(text);
-alert("Đã copy: "+text);
-}
-</script>
+        .content-card {
+            background-color: var(--card-bg);
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            color: #222;
+        }
 
+        .section { margin-bottom: 20px; }
+        .section-title { 
+            font-weight: 800; 
+            font-size: 14px; 
+            color: #333; 
+            display: block; 
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .cmd-line { 
+            margin: 8px 0; 
+            font-size: 14px; 
+            line-height: 1.6;
+        }
+
+        .cmd {
+            color: var(--primary-blue);
+            font-weight: 600;
+            cursor: pointer;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: 0.2s;
+        }
+
+        .cmd:hover { background: rgba(42, 125, 225, 0.1); text-decoration: underline; }
+
+        .desc { color: #444; }
+        .example { font-size: 12px; color: #888; display: block; margin: 2px 0 8px 20px; }
+
+        #toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.85);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-size: 13px;
+            display: none;
+            z-index: 1000;
+        }
+    </style>
+
+    <script>
+        function copy(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const toast = document.getElementById('toast');
+                toast.innerText = "Đã copy: " + text;
+                toast.style.display = 'block';
+                setTimeout(() => { toast.style.display = 'none'; }, 1500);
+            });
+        }
+    </script>
 </head>
-
 <body>
 
-<div class="box">
+<div id="toast">Đã copy!</div>
 
-<b>📜 Các lệnh có sẵn:</b>
+<div class="window">
+    <div class="header">
+        <div class="header-left">
+            <span style="color:#777">✕</span>
+            <div class="avatar"></div>
+            <span class="header-title">Bích Lâm ( Vợ anh )</span>
+        </div>
+        <div style="color:#666;">+ &nbsp; ⛶</div>
+    </div>
 
-<br><br>
+    <div class="modal-body">
+        <div class="content-card">
+            
+            <div class="section">
+                <span class="section-title">🔐 ADMIN COMMANDS</span>
+                <div class="cmd-line"><span class="cmd" onclick="copy('/ban')">🔨 /ban</span> <span class="desc">- Ban user (reply)</span></div>
+                <div class="cmd-line"><span class="cmd" onclick="copy('/unban')">🔓 /unban</span> <span class="desc">- Unban user</span></div>
+                <div class="cmd-line"><span class="cmd" onclick="copy('/mute')">🔇 /mute</span> <span class="desc">[phút|giây]</span></div>
+                <span class="example">VD: /mute 5 hoặc /mute 30s</span>
+                <div class="cmd-line"><span class="cmd" onclick="copy('/pin')">📌 /pin</span> <span class="desc">- Ghim tin nhắn</span></div>
+                <div class="cmd-line"><span class="cmd" onclick="copy('/unpin')">📍 /unpin</span> <span class="desc">- Bỏ ghim</span></div>
+            </div>
 
-<b>👮 Admin (Chỉ chủ group hoặc admin):</b><br>
+            <div class="section">
+                <span class="section-title">⚠️ WARNING SYSTEM</span>
+                <div class="cmd-line"><span class="cmd" onclick="copy('/canhbao')">⚠️ /canhbao</span> <span class="desc">- Cảnh báo user</span></div>
+                <div class="cmd-line"><span class="cmd" onclick="copy('/xcanhbao')">❌ /xcanhbao</span> <span class="desc">- Xóa cảnh báo</span></div>
+                <div class="cmd-line"><span class="cmd" onclick="copy('/gocanhbao')">🔄 /gocanhbao</span> <span class="desc">- Reset cảnh báo</span></div>
+                <div class="cmd-line"><span class="cmd" onclick="copy('/xemcanhbao')">🔍 /xemcanhbao</span> <span class="desc">- Xem số cảnh báo</span></div>
+            </div>
 
-<span class="cmd" onclick="copy('/ban')">🔨 /ban</span> - Ban user (reply)<br>
-<span class="cmd" onclick="copy('/unban')">🔓 /unban</span> - Unban user (reply)<br>
-<span class="cmd" onclick="copy('/mute')">🔇 /mute</span> - Mute user<br>
+            <div class="section">
+                <span class="section-title">🔞 LOCK & NSFW 18+</span>
+                <div class="cmd-line"><span class="cmd" onclick="copy('/locklink')">🔗 /locklink</span> <span class="desc">- Chặn link Telegram</span></div>
+                <div class="cmd-line"><span class="cmd" onclick="copy('/unlocklink')">🔓 /unlocklink</span> <span class="desc">- Mở link</span></div>
+                <div class="cmd-line"><span class="cmd" onclick="copy('/lock18')">🔞 /lock18</span> <span class="desc">- Chặn 18+ TOÀN BỘ</span></div>
+                <div class="cmd-line"><span class="cmd" onclick="copy('/unlock18')">🔓 /unlock18</span> <span class="desc">- Mở 18+</span></div>
+                <div class="cmd-line"><span class="cmd" onclick="copy('/nsfwstatus')">📊 /nsfwstatus</span> <span class="desc">- Trạng thái hệ thống</span></div>
+            </div>
 
-VD:  
-🔇 /mute 5 (5 phút)  
-🔇 /mute 30s (30 giây)
+            <div class="section">
+                <span class="section-title">📱 OTHER</span>
+                <div class="cmd-line"><span class="cmd" onclick="copy('/url')">🔗 /url</span> <span class="desc">+ liên kết tiktok</span></div>
+                <span class="example">VD: /url https://tiktok.com/...</span>
+                <div class="cmd-line"><span class="cmd" onclick="copy('/start')">🚀 /start</span> <span class="desc">- Bắt đầu</span></div>
+                <div class="cmd-line"><span class="cmd" onclick="copy('/ping')">⚡ /ping</span> <span class="desc">- Kiểm tra độ trễ</span></div>
+                <div class="cmd-line"><span class="cmd" onclick="copy('/mybot')">🤖 /mybot</span> <span class="desc">- ID bot & group</span></div>
+            </div>
 
-<br><br>
-
-<span class="cmd" onclick="copy('/locklink')">🔗 /locklink</span> - Bật chặn link<br>
-<span class="cmd" onclick="copy('/unlocklink')">🔓 /unlocklink</span> - Tắt chặn link<br>
-
-<span class="cmd" onclick="copy('/lock18')">🔞 /lock18</span> - Bật chặn 18+<br>
-<span class="cmd" onclick="copy('/unlock18')">🔓 /unlock18</span> - Tắt chặn 18+<br>
-
-<span class="cmd" onclick="copy('/lock18image')">🖼️ /lock18image</span> - Bật chặn ảnh 18+<br>
-<span class="cmd" onclick="copy('/unlock18image')">🖼️ /unlock18image</span> - Tắt chặn ảnh 18+<br>
-
-<span class="cmd" onclick="copy('/lock18link')">🚫🔗 /lock18link</span> - Bật chặn link 18+<br>
-<span class="cmd" onclick="copy('/unlock18link')">🔓🔗 /unlock18link</span> - Tắt chặn link 18+<br>
-
-<span class="cmd" onclick="copy('/schedule')">⏰ /schedule</span> - Tin nhắn định kỳ<br>
-<span class="cmd" onclick="copy('/unschedule')">⏹️ /unschedule</span> - Tắt tin nhắn định kỳ
-
-<br><br>
-
-<b>👑 Bot Owner (Chỉ người tạo bot):</b><br>
-
-<span class="cmd" onclick="copy('/banglobal')">🌍 /banglobal</span> - Ban toàn bộ group<br>
-<span class="cmd" onclick="copy('/unbanglobal')">🌏 /unbanglobal</span> - Unban toàn bộ
-
-<br><br>
-
-<b>⚙️ Khác:</b><br>
-
-<span class="cmd" onclick="copy('/start')">🚀 /start</span> - Kiểm tra bot<br>
-<span class="cmd" onclick="copy('/help')">📖 /help</span> - Xem danh sách lệnh
-
+        </div>
+    </div>
 </div>
 
 </body>
